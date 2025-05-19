@@ -1,0 +1,26 @@
+K8Ops installation
+
+Prerequisites:
+
+kubectl, awscli installed. 
+
+Install kops from git releases. 
+
+create IAM user with sufficient roles and login to awscli
+create an s3 bucket
+
+Export variables:
+
+export KOPS_STATE_STORE=s3://<bucket-name>
+export AWS_REGION=us-east-1
+
+export NAME=go-web-app.local (Same as DNS subdomain name)
+
+-- command to create cluster --
+
+kops create cluster \
+--name=${NAME} \
+--zones=us-east-1a \
+--node-count=2 \
+--node-size=t2.small \
+--master-size=t3.small
